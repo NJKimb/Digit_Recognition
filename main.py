@@ -38,7 +38,7 @@ def to_device(data, device):
         return [to_device(x, device) for x in data]
     return data.to(device, non_blocking=True)
 
-def main():
+def train_network():
     device = (
         "cuda" if torch.cuda.is_available()
         else "cpu"
@@ -85,10 +85,22 @@ def main():
                 if torch.argmax(i) == y[index]:
                     correct_predictions += 1
                 total_predictions += 1
+
+    torch.save(model.state_dict(), "dict")
     print(f"Accuracy: {round(correct_predictions/total_predictions, 3)}")
 
 
+def detect():
+    model = NeuralNetwork()
+    model.load_state_dict(torch.load("dict"))
+    model.eval()
 
+    print(model)
 
 if __name__ == "__main__":
-    main()
+    choice = input("Ender \"t\" for training or \"d\" for detection: ")
+
+    if choice == "t":
+        train_network()
+    elif choice == "d":
+        detect()

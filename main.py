@@ -96,10 +96,10 @@ def train_network():
     test_loader = DeviceDataLoader(test_loader, device)
 
     criterion = nn.CrossEntropyLoss()
-    optimizer = torch.optim.Adam(model.parameters(), lr=0.0001)
+    optimizer = torch.optim.Adam(model.parameters(), lr=0.00001)
 
     # Training loop
-    for epoch in range(25):
+    for epoch in range(50):
         model.train()
 
         for (X, y) in train_loader:

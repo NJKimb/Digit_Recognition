@@ -1,18 +1,19 @@
 import sys
 import cv2
 import torch
+import numpy
 from PIL import Image
 from torch import nn
 from torch.nn import MaxPool2d, LogSoftmax
 from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
-import numpy
 
 # Hyperparameters
 LearningRate = 0.001
 BatchSize = 10
-Epochs = 10
+Epochs = 25
 DropoutRate = .3
+
 
 # Neural Network class
 class NeuralNetwork(nn.Module):
